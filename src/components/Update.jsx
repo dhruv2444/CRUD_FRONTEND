@@ -10,6 +10,7 @@ const Update = () => {
     const data = { name, age };
     await axios.put(`https://backend-liard-six.vercel.app/users/${id}`, data);
     alert("User Updated Successfully");
+    onRegister();
     e.target.reset();
   };
 

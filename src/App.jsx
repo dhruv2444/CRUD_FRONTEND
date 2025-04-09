@@ -31,8 +31,8 @@ const App = () => {
 
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
       <Register onRegister={triggerRefresh} />
-        <Update />
-        <Delete />
+        <Update onRegister={triggerRefresh}/>
+        <Delete onRegister={triggerRefresh}/>
       </div>
 
       <div style={{ marginTop: '40px' }}>

@@ -7,6 +7,7 @@ const Delete = () => {
     const id = e.target.id.value;
     await axios.delete(`https://backend-liard-six.vercel.app/users/${id}`);
     alert('Product deleted');
+    onRegister();
     e.target.reset();
   };
 
