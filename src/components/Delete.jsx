@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const Delete = () => {
+const Delete = ({ onRegister }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     const id = e.target.id.value;

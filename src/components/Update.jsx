@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const Update = () => {
+const Update = ({ onRegister }) => {
   const handleupdate = async (e) => {
     e.preventDefault();
     const id = e.target.id.value;
