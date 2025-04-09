@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   const handleregister = async (e) => {
     e.preventDefault();
     const user = {
@@ -10,6 +10,7 @@ const Register = () => {
     };
     await axios.post('https://backend-liard-six.vercel.app/users', user);
     alert('User Registered Successfully');
+    onRegister();
     e.target.reset();
   };
 

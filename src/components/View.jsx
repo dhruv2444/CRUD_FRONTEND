@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const View = () => {
+const View = ({refresh}) => {
   const [users, setUsers] = useState([]);
-
+  const url = "https://backend-liard-six.vercel.app/users"
   useEffect(() => {
+    
     viewdata();
-  }, []);
+  }, [refresh]);
 
   const viewdata = async () => {
     const res = await axios.get('https://backend-liard-six.vercel.app/users');

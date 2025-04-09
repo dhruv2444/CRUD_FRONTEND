@@ -1,78 +1,45 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import Register from './components/Register';
+import View from './components/View';
+import Delete from './components/Delete';
+import Update from './components/Update';
 
-const Register = () => {
-  const handleregister = async (e) => {
-    e.preventDefault();
-    const user = {
-      name: e.target.name.value,
-      age: e.target.age.value,
-    };
-    await axios.post('http://localhost:9000/users', user);
-    alert('User Registered Successfully');
-    e.target.reset();
+const App = () => {
+  const [refresh, setRefresh] = useState(false);
+
+  const triggerRefresh = () => {
+    setRefresh(prev => !prev); // toggle to re-trigger useEffect
   };
 
   return (
     <div style={{
-      background: '#fff',
-      padding: '30px 25px',
-      borderRadius: '15px',
-      boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
-      width: '280px',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #fce3ec, #f9f9f9)',
+      padding: '30px',
+      fontFamily: 'Segoe UI, sans-serif',
     }}>
-      <h3 style={{
-        marginBottom: '15px',
-        fontSize: '1.4rem',
-        background: 'linear-gradient(to right, #f857a6, #ff5858)',
+      <h1 style={{
+        textAlign: 'center',
+        marginBottom: '30px',
+        fontSize: '2rem',
+        background: 'linear-gradient(to right, #ff758c, #7873f5)',
         WebkitBackgroundClip: 'text',
         color: 'transparent',
       }}>
-        Register User
-      </h3>
+        User Registration System
+      </h1>
 
-      <form onSubmit={handleregister} style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-        width: '100%',
-        alignItems: 'center',
-      }}>
-        <input type='text' name='name' placeholder='Name' required style={{
-          padding: '10px',
-          borderRadius: '20px',
-          border: '1px solid #ccc',
-          width: '100%',
-          textAlign: 'center',
-        }} />
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '30px' }}>
+      <Register onRegister={triggerRefresh} />
+        <Update />
+        <Delete />
+      </div>
 
-        <input type='text' name='age' placeholder='Age' required style={{
-          padding: '10px',
-          borderRadius: '20px',
-          border: '1px solid #ccc',
-          width: '100%',
-          textAlign: 'center',
-        }} />
-
-        <button type='submit' style={{
-          padding: '10px',
-          borderRadius: '20px',
-          border: 'none',
-          background: 'linear-gradient(to right, #36d1dc, #5b86e5)',
-          color: '#fff',
-          fontWeight: 'bold',
-          width: '100%',
-          cursor: 'pointer',
-        }}>
-          Register
-        </button>
-      </form>
+      <div style={{ marginTop: '40px' }}>
+      <View refresh={refresh} />
+      </div>
     </div>
   );
 };
 
-export default Register;
+export default App;
